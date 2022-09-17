@@ -6,13 +6,19 @@ public class Health : MonoBehaviour
 {
     public float maxHealth = 10;
     public float currentHealth;
-
+ 
       public Animator animator;
 
-    
+     public static bool isAlive = true;
+
+    public bool döndür()
+    {
+        return isAlive;
+    }
 
     void Awake()
     {
+
         animator = GetComponent<Animator>();
         currentHealth = maxHealth;
 
@@ -21,10 +27,11 @@ public class Health : MonoBehaviour
 
     public void Update()
     {
-
+       
     }
 
-   
+
+  
 
     public void TakeDamage( int amount)
     {
@@ -32,11 +39,18 @@ public class Health : MonoBehaviour
 
         if(currentHealth == 0)
         {
-            
+            isAlive = false;
+
+     
            
             animator.SetBool("isDead",true);
-           
+          
         }
+
+
+
     }
    
+
+    
 }

@@ -8,17 +8,20 @@ public class PlayerMovement : MonoBehaviour
   
     bool isFacingRight = true;
     [SerializeField] float runSpeed = 10f;
-
+    Health health;
     Animator animator;
-    bool Alive;
+
     Vector2 moveInput;
     Rigidbody2D myRigidbody;
     CapsuleCollider2D capsuleCollider;
 
     void Start()
     {
-        
-        
+       
+        health = GetComponent<Health>();
+      
+
+
 
         myRigidbody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
@@ -28,7 +31,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-
+      
+     
         Run();
         FlipSprite();
 
@@ -38,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
     void OnJump(InputValue value)
     {
 
-        //if(!Alive == false) { return; }
+        if (health.döndür() == false) { return; }
         if (!capsuleCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
         {
             return;
@@ -50,13 +54,15 @@ public class PlayerMovement : MonoBehaviour
     }
     void OnMove(InputValue value)
     {
-        //if (!Alive == false) { return; }
+        if (health.döndür() == false) { return; }
+    
         moveInput = value.Get<Vector2>();
         
     }
 
     void Run()
     {
+        if (health.döndür() == false) { return; }
         Vector2 playerVelocity = new Vector2(moveInput.x * runSpeed, myRigidbody.velocity.y);
       
         myRigidbody.velocity = playerVelocity;
@@ -70,6 +76,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void FlipSprite()
     {
+        if (health.döndür() == false) { return; }
         if (isFacingRight && myRigidbody.velocity.x < 0f || !isFacingRight && myRigidbody.velocity.x > 0f)
         {
             isFacingRight = !isFacingRight;
