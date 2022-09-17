@@ -11,7 +11,7 @@ public class Health : MonoBehaviour
 
      public static bool isAlive = true;
 
-    public bool döndür()
+    public bool returnAliveStatus()
     {
         return isAlive;
     }

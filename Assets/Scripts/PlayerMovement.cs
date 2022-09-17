@@ -42,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
     void OnJump(InputValue value)
     {
 
-        if (health.döndür() == false) { return; }
+        if (health.returnAliveStatus() == false) { return; }
         if (!capsuleCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
         {
             return;
@@ -54,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void OnMove(InputValue value)
     {
-        if (health.döndür() == false) { return; }
+        if (health.returnAliveStatus() == false) { return; }
     
         moveInput = value.Get<Vector2>();
         
@@ -62,7 +62,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Run()
     {
-        if (health.döndür() == false) { return; }
+        if (health.returnAliveStatus() == false) { return; }
         Vector2 playerVelocity = new Vector2(moveInput.x * runSpeed, myRigidbody.velocity.y);
       
         myRigidbody.velocity = playerVelocity;
@@ -76,7 +76,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void FlipSprite()
     {
-        if (health.döndür() == false) { return; }
+        if (health.returnAliveStatus() == false) { return; }
         if (isFacingRight && myRigidbody.velocity.x < 0f || !isFacingRight && myRigidbody.velocity.x > 0f)
         {
             isFacingRight = !isFacingRight;
