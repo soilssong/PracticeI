@@ -5,23 +5,25 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-
-
+  
     bool isFacingRight = true;
     [SerializeField] float runSpeed = 10f;
 
     Animator animator;
-
+    bool Alive;
     Vector2 moveInput;
     Rigidbody2D myRigidbody;
     CapsuleCollider2D capsuleCollider;
 
     void Start()
     {
+        
+        
 
         myRigidbody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         capsuleCollider = GetComponent<CapsuleCollider2D>();
+       
     }
 
     void Update()
@@ -29,10 +31,14 @@ public class PlayerMovement : MonoBehaviour
 
         Run();
         FlipSprite();
+
+       
     }
 
     void OnJump(InputValue value)
     {
+
+        //if(!Alive == false) { return; }
         if (!capsuleCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
         {
             return;
@@ -44,6 +50,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void OnMove(InputValue value)
     {
+        //if (!Alive == false) { return; }
         moveInput = value.Get<Vector2>();
         
     }
