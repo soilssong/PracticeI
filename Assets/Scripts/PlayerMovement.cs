@@ -10,6 +10,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float runSpeed = 10f;
     Health health;
     Animator animator;
+    bool i;
+ 
 
     Vector2 moveInput;
     Rigidbody2D myRigidbody;
@@ -17,8 +19,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-       
-        health = GetComponent<Health>();
+      
+       health = GetComponent<Health>();
       
 
 
@@ -36,7 +38,6 @@ public class PlayerMovement : MonoBehaviour
         Run();
         FlipSprite();
 
-       
     }
 
     void OnJump(InputValue value)
@@ -59,6 +60,19 @@ public class PlayerMovement : MonoBehaviour
         moveInput = value.Get<Vector2>();
         
     }
+
+    
+
+     void OnInteract(InputValue value)
+    {
+
+        if (value.isPressed)
+        {
+
+        }
+    }
+  
+   
 
     void Run()
     {
