@@ -5,14 +5,14 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-  
+
+    static bool isSitting = false;
     bool isFacingRight = true;
+
     [SerializeField] float runSpeed = 10f;
     Health health;
     Animator animator;
-    bool i;
  
-
     Vector2 moveInput;
     Rigidbody2D myRigidbody;
     CapsuleCollider2D capsuleCollider;
@@ -20,11 +20,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
       
-       health = GetComponent<Health>();
-      
-
-
-
+        health = GetComponent<Health>();
         myRigidbody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         capsuleCollider = GetComponent<CapsuleCollider2D>();
@@ -33,17 +29,14 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-      
-     
         Run();
         FlipSprite();
-
     }
 
     void OnJump(InputValue value)
     {
 
-        if (health.returnAliveStatus() == false) { return; }
+        if (health.returnAliveStatus() == false || isSitting == true) { return; }
         if (!capsuleCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
         {
             return;
@@ -55,28 +48,40 @@ public class PlayerMovement : MonoBehaviour
     }
     void OnMove(InputValue value)
     {
-        if (health.returnAliveStatus() == false) { return; }
+        if (health.returnAliveStatus() == false || isSitting == true) { return; }
     
         moveInput = value.Get<Vector2>();
         
     }
 
-    
-
-     void OnInteract(InputValue value)
+    void OnSit(InputValue value)
     {
+       
+        if (health.returnAliveStatus() == false) { return; }
 
         if (value.isPressed)
         {
 
+            isSitting = !isSitting;
+
+            if (isSitting == true)
+            {
+                animator.SetBool("isSitting", true);
+            }
+
+            if (isSitting == false)
+            {
+                animator.SetBool("isSitting", false);
+            }
         }
+       
+
+       
     }
-  
-   
 
     void Run()
     {
-        if (health.returnAliveStatus() == false) { return; }
+        if (health.returnAliveStatus() == false || isSitting == true) { return; }
         Vector2 playerVelocity = new Vector2(moveInput.x * runSpeed, myRigidbody.velocity.y);
       
         myRigidbody.velocity = playerVelocity;
@@ -90,7 +95,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void FlipSprite()
     {
-        if (health.returnAliveStatus() == false) { return; }
+        if (health.returnAliveStatus() == false || isSitting == true) { return; }
         if (isFacingRight && myRigidbody.velocity.x < 0f || !isFacingRight && myRigidbody.velocity.x > 0f)
         {
             isFacingRight = !isFacingRight;

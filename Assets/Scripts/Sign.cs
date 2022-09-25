@@ -13,23 +13,7 @@ public class Sign : MonoBehaviour
     public bool playerInrange;
 
     bool interaction;
-  
-
-  
-    
-    void Awake()
-    {
-   
-
-      
-       
-    }
-
-    void Update()
-    {
-      
-     
-    }
+ 
    void OnInteract(InputValue value)
     {
         if (value.isPressed && playerInrange)

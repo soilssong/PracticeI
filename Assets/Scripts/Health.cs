@@ -25,32 +25,16 @@ public class Health : MonoBehaviour
         
     }
 
-    public void Update()
-    {
-       
-    }
-
-
-  
-
     public void TakeDamage( int amount)
     {
         currentHealth -= amount;
 
         if(currentHealth == 0)
         {
-            isAlive = false;
-
-     
-           
+            isAlive = false;  
             animator.SetBool("isDead",true);
           
         }
-
-
-
     }
-   
-
     
 }

@@ -40,8 +40,6 @@ public class Popup : MonoBehaviour
             Debug.Log("exited");
             PopUpBox.SetActive(false);
 
-
-
         }
 
 
