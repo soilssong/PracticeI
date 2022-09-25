@@ -37,7 +37,7 @@ public class Popup : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerInrange = false;
-            Debug.Log("exited");
+    
             PopUpBox.SetActive(false);
 
         }

@@ -12,7 +12,7 @@ public class Sign : MonoBehaviour
     public string dialog;
     public bool playerInrange;
 
-    bool interaction;
+   
  
    void OnInteract(InputValue value)
     {
