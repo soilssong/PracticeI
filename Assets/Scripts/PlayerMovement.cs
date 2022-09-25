@@ -42,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
     void OnJump(InputValue value)
     {
 
-        if (health.returnAliveStatus() == false || isSitting == true) { return; }
+        if (health.returnAliveStatus() == false || isSitting == true || weapon.returnHoldingGunStatus()) { return; }
         if (!capsuleCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
         {
             return;
