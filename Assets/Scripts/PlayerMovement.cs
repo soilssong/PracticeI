@@ -36,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Run();
         FlipSprite();
-        Debug.Log(weapon.returnHoldingGunStatus());
+       
     }
 
     void OnJump(InputValue value)
@@ -50,6 +50,17 @@ public class PlayerMovement : MonoBehaviour
         if (value.isPressed)
         {
             myRigidbody.velocity += new Vector2(0f, 10f);
+        }
+    }
+
+    void OnFire(InputValue value)
+    {
+        if (weapon.returnHoldingGunStatus() ||  health.returnAliveStatus() == false)
+        {
+            if (value.isPressed)
+            {
+                weapon.Shoot();
+            }
         }
     }
     void OnMove(InputValue value)
