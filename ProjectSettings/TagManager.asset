@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Wolf
   - Gun
+  - Zombie
+  - Bullet
   layers:
   - Default
   - TransparentFX

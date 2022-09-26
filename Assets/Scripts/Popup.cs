@@ -17,7 +17,7 @@ public class Popup : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerInrange = true;
-            Debug.Log("entered");
+         
             if (PopUpBox.activeInHierarchy)
             {
                 PopUpBox.SetActive(false);
