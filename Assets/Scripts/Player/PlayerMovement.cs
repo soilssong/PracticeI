@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     Vector2 moveInput;
     Rigidbody2D myRigidbody;
     CapsuleCollider2D capsuleCollider;
-
+    
     void Start()
     {
 
@@ -29,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
         myRigidbody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         capsuleCollider = GetComponent<CapsuleCollider2D>();
+      
 
     }
 
@@ -114,13 +115,15 @@ public class PlayerMovement : MonoBehaviour
     }
     void FlipSprite()
     {
-        if (health.returnAliveStatus() == false || isSitting == true) { return; }
+        if (health.returnAliveStatus() == false || isSitting == true || weapon.returnHoldingGunStatus() == true) { return; }
         if (isFacingRight && myRigidbody.velocity.x < 0f || !isFacingRight && myRigidbody.velocity.x > 0f)
         {
             isFacingRight = !isFacingRight;
             Vector3 localScale = transform.localScale;
             localScale.x *= -1f;
             transform.localScale = localScale;
+
+            Debug.Log("a");
         }
     }
 

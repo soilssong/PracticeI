@@ -9,6 +9,9 @@ public class Zombie : MonoBehaviour
     Rigidbody2D myRigidbody;
     CapsuleCollider2D capsuleCollider;
      SpriteRenderer render;
+    //Transform transform;
+
+    float movespeed = -5f;
 
     void Start()
     {
@@ -16,12 +19,13 @@ public class Zombie : MonoBehaviour
         myRigidbody = GetComponent<Rigidbody2D>();
         capsuleCollider = GetComponent<CapsuleCollider2D>();
          render = GetComponent<SpriteRenderer>();
+        //transform = GetComponent<Transform>();
     }
 
  
     void Update()
     {
-       
+        myRigidbody.velocity = new Vector2(movespeed, 0f);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -37,7 +41,15 @@ public class Zombie : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+
+        if (collision.tag == "Cage")
+        {
+            movespeed = -movespeed;
+            transform.localScale = new Vector2(-(Mathf.Sign(myRigidbody.velocity.x)), 1f);
+        }
     }
+
+ 
 
     IEnumerator ChangeColor()
     {
@@ -46,4 +58,8 @@ public class Zombie : MonoBehaviour
         render.color = new Color(1, 1, 1);
     }
 
-  }
+
+
+   
+
+}
