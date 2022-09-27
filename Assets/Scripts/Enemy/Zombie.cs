@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class Zombie : MonoBehaviour
 {
+    public GameObject explosion;
     public int Health = 10;
     Animator animator;
     Rigidbody2D myRigidbody;
     CapsuleCollider2D capsuleCollider;
      SpriteRenderer render;
+    SpriteRenderer explosionSprite;
     //Transform transform;
 
     float movespeed = -5f;
@@ -19,7 +21,9 @@ public class Zombie : MonoBehaviour
         myRigidbody = GetComponent<Rigidbody2D>();
         capsuleCollider = GetComponent<CapsuleCollider2D>();
          render = GetComponent<SpriteRenderer>();
-        //transform = GetComponent<Transform>();
+        explosionSprite = explosion.GetComponent<SpriteRenderer>();
+       
+        
     }
 
  
@@ -38,7 +42,10 @@ public class Zombie : MonoBehaviour
             Debug.Log(Health);
             if (Health <= 0)
             {
-                Destroy(gameObject);
+                StartCoroutine(ExplosionAndDead());
+                
+              
+              
             }
         }
 
@@ -56,6 +63,15 @@ public class Zombie : MonoBehaviour
         render.color = new Color(1, 0, 0);
         yield return new WaitForSecondsRealtime(0.5f);
         render.color = new Color(1, 1, 1);
+    }
+
+    IEnumerator ExplosionAndDead()
+    {
+
+        explosionSprite.enabled = true;
+        yield return new WaitForSecondsRealtime(0.5f);
+
+        Destroy(gameObject);
     }
 
 

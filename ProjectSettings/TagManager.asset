@@ -8,6 +8,7 @@ TagManager:
   - Gun
   - Zombie
   - Bullet
+  - Cage
   layers:
   - Default
   - TransparentFX
@@ -19,7 +20,7 @@ TagManager:
   - Ground
   - Decoration
   - Bullet
-  - 
+  - Zombie
   - 
   - 
   - 
@@ -53,4 +54,10 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 183098045
+    locked: 0
+  - name: Zombie
+    uniqueID: 3308218227
+    locked: 0
+  - name: Decoration
+    uniqueID: 2804701531
     locked: 0
