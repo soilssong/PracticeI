@@ -39,7 +39,7 @@ public class Zombie : MonoBehaviour
             StartCoroutine(ChangeColor());
            
             Health -= 2;
-            Debug.Log(Health);
+        
             if (Health <= 0)
             {
                 StartCoroutine(ExplosionAndDead());
