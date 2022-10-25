@@ -18,6 +18,8 @@ public class PlayerMovement : MonoBehaviour
     Vector2 moveInput;
     Rigidbody2D myRigidbody;
     CapsuleCollider2D capsuleCollider;
+    BoxCollider2D boxCollider;
+    
     
     void Start()
     {
@@ -29,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
         myRigidbody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         capsuleCollider = GetComponent<CapsuleCollider2D>();
-      
+        boxCollider = GetComponent<BoxCollider2D>();
 
     }
 
@@ -44,12 +46,13 @@ public class PlayerMovement : MonoBehaviour
     {
 
         if (health.returnAliveStatus() == false || isSitting == true || weapon.returnHoldingGunStatus()) { return; }
-        if (!capsuleCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
+        if (!boxCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
         {
             return;
         }
         if (value.isPressed)
         {
+            Debug.Log("jump");
             myRigidbody.velocity += new Vector2(0f, 10f);
         }
     }
@@ -128,7 +131,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-
+   
 
 
 

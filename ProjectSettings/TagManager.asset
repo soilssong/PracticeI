@@ -9,6 +9,7 @@ TagManager:
   - Zombie
   - Bullet
   - Cage
+  - Fire
   layers:
   - Default
   - TransparentFX
@@ -45,6 +46,9 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Popups
+    uniqueID: 3225207829
     locked: 0
   - name: Background
     uniqueID: 3698842263
