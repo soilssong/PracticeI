@@ -6,11 +6,6 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
 
-    Inventory inventory;
-
-    [SerializeField] private UI_Inventory uiInventory;
-    
-
     static bool isSitting = false;
     bool isFacingRight = true;
 
@@ -23,17 +18,9 @@ public class PlayerMovement : MonoBehaviour
     Vector2 moveInput;
     Rigidbody2D myRigidbody;
     CapsuleCollider2D capsuleCollider;
-
-
-  
-
+    
     void Start()
-
-
     {
-
-        inventory = new Inventory();
-        uiInventory.SetInventory(inventory);
 
         health = GetComponent<Health>();
         weapon = GetComponent<Weapon>();
@@ -42,8 +29,8 @@ public class PlayerMovement : MonoBehaviour
         myRigidbody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         capsuleCollider = GetComponent<CapsuleCollider2D>();
+      
 
-       
     }
 
     void Update()
